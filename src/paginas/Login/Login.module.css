@@ -1,0 +1,168 @@
+.pagina {
+    min-height: 100vh;
+    display: grid;
+    grid-template-columns: 340px 1fr;
+}
+
+/* ---------- Barra lateral ---------- */
+.lateral {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: 2em;
+    padding: 2em 2em 3em;
+    border-right: 1px solid var(--cinza);
+}
+
+.logo {
+    height: 56px;
+}
+
+.botaoLogin {
+    display: inline-block;
+    background-color: var(--verdeClaro);
+    color: var(--branco);
+    font-size: 1.25rem;
+    font-weight: 500;
+    text-decoration: none;
+    padding: 0.2em 0.6em;
+    border-radius: 6px;
+}
+
+/* Linhas em "árvore" ligando o Log in aos links de cadastro */
+.subitens {
+    list-style: none;
+    margin: 0 0 0 1.2em;
+    padding: 0;
+}
+
+.subitens li {
+    position: relative;
+    padding: 0.7em 0 0.7em 1.5em;
+}
+
+.subitens li::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 1.2em;
+    height: 50%;
+    border-left: 1px solid var(--verdeClaro);
+    border-bottom: 1px solid var(--verdeClaro);
+}
+
+.subitens li:not(:last-child)::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 50%;
+    height: 50%;
+    border-left: 1px solid var(--verdeClaro);
+}
+
+.subitens a {
+    color: var(--verdeEscuro);
+    font-size: 0.9rem;
+}
+
+.menu {
+    display: flex;
+    flex-direction: column;
+    gap: 1em;
+}
+
+.menu a {
+    color: var(--verdeClaro);
+    font-size: 1.4rem;
+    font-weight: 600;
+    text-decoration: none;
+}
+
+.menu a:hover {
+    color: var(--verdeEscuro);
+}
+
+/* ---------- Formulário ---------- */
+.principal {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 2em 5%;
+}
+
+.titulo {
+    margin: 0 0 1em;
+    font-size: 2.8rem;
+    font-weight: 400;
+}
+
+.formulario {
+    width: 100%;
+    max-width: 360px;
+    display: flex;
+    flex-direction: column;
+}
+
+.formulario label {
+    font-weight: 600;
+    margin-bottom: 0.4em;
+}
+
+.formulario input {
+    box-sizing: border-box;
+    width: 100%;
+    padding: 0.9em;
+    margin-bottom: 1em;
+    border: 1px solid var(--preto);
+    border-radius: 6px;
+    font-family: var(--fonte);
+    font-size: 1rem;
+}
+
+.esqueci {
+    align-self: flex-end;
+    margin-top: -0.6em;
+    margin-bottom: 0.6em;
+    color: var(--preto);
+    font-size: 0.8rem;
+}
+
+.entrar {
+    padding: 0.4em;
+    background-color: var(--verdeClaro);
+    color: var(--branco);
+    border: none;
+    border-radius: 6px;
+    font-family: var(--fonte);
+    font-size: 2rem;
+    cursor: pointer;
+}
+
+.entrar:hover {
+    background-color: var(--verdeEscuro);
+}
+
+.ou {
+    text-align: center;
+    font-weight: 600;
+    margin: 0.7em 0;
+}
+
+.google {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.8em;
+    padding: 0.8em;
+    background-color: var(--branco);
+    border: 1px solid var(--preto);
+    border-radius: 6px;
+    font-family: var(--fonte);
+    font-size: 1rem;
+    cursor: pointer;
+}
+
+.google:hover {
+    background-color: #F5F5F5;
+}

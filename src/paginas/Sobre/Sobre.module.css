@@ -1,0 +1,69 @@
+.pagina {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    background-color: #F5F5F5;
+}
+
+.topo {
+    display: flex;
+    align-items: center;
+    gap: 2em;
+    padding: 1em 3%;
+}
+
+.voltar {
+    background: none;
+    border: none;
+    font-size: 2rem;
+    cursor: pointer;
+    color: var(--preto);
+}
+
+.titulo {
+    margin: 0;
+    font-size: 1.5rem;
+    font-weight: 500;
+}
+
+.principal {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    padding: 1em 5% 2em;
+}
+
+.cartao {
+    width: 100%;
+    max-width: 660px;
+    box-sizing: border-box;
+    background-color: var(--branco);
+    border: 2px solid var(--verdeClaro);
+    border-radius: 8px;
+    padding: 1.8em 2em;
+    text-align: justify;
+    line-height: 1.5;
+}
+
+.cartao p {
+    margin: 0 0 1.4em;
+}
+
+.destaque {
+    color: var(--verdeClaro);
+    font-weight: 700;
+}
+
+.email {
+    display: block;
+    color: var(--preto);
+    text-decoration: none;
+}
+
+.cartao .assinatura {
+    margin: 0;
+    text-align: right;
+    color: var(--verdeClaro);
+    font-size: 1.25rem;
+    font-weight: 700;
+}

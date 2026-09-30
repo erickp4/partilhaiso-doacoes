@@ -1,0 +1,242 @@
+.pagina {
+    min-height: 100vh;
+    padding: 1.5em 5%;
+    background-color: #F3F2EF;
+}
+
+.aviso {
+    padding: 2em;
+    color: #555555;
+}
+
+/* ---------- Cartão com borda verde ---------- */
+.cartao {
+    max-width: 800px;
+    margin: 0 auto;
+    background-color: var(--branco);
+    border: 2px solid var(--verdeClaro);
+    border-radius: 6px;
+}
+
+.secao {
+    padding: 1em 2em 1.5em;
+}
+
+/* A linha verde que separa as duas partes */
+.baixo {
+    border-top: 2px solid var(--verdeClaro);
+}
+
+.topo {
+    display: flex;
+    align-items: center;
+    gap: 2em;
+}
+
+.voltar {
+    padding: 0;
+    background: none;
+    border: none;
+    font-size: 2rem;
+    line-height: 1;
+    cursor: pointer;
+    color: var(--preto);
+}
+
+.titulo {
+    margin: 0;
+    font-size: 1.5rem;
+    font-weight: 500;
+}
+
+/* ---------- Foto ---------- */
+.foto {
+    display: flex;
+    align-items: center;
+    gap: 1em;
+    margin: 0.5em 0 1em 1.5em;
+}
+
+.avatar {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    object-fit: cover;
+    background-color: var(--cinza);
+}
+
+.editarFoto {
+    padding: 0;
+    background: none;
+    border: none;
+    color: var(--preto);
+    font-family: var(--fonte);
+    font-size: 1rem;
+    font-weight: 600;
+    text-decoration: underline;
+    cursor: pointer;
+}
+
+/* ---------- Campos ---------- */
+.colunas {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.5em;
+    padding: 0 0.5em;
+}
+
+.campo {
+    margin-bottom: 1em;
+}
+
+.campo label,
+.valores label {
+    display: block;
+    margin-bottom: 0.3em;
+    font-size: 0.95rem;
+    font-weight: 600;
+}
+
+.campo input,
+.campo textarea,
+.valores input {
+    box-sizing: border-box;
+    width: 100%;
+    padding: 0.6em 0.7em;
+    background-color: var(--branco);
+    border: 1px solid #C4C4C4;
+    border-radius: 4px;
+    font-family: var(--fonte);
+    font-size: 0.95rem;
+}
+
+.campo input:disabled,
+.campo textarea:disabled,
+.valores input:disabled {
+    background-color: #F5F5F5;
+    color: #999999;
+}
+
+.endereco {
+    display: grid;
+    grid-template-columns: 1fr 90px;
+    gap: 0.6em;
+}
+
+/* ---------- Rótulo com botão sim/não ---------- */
+.rotuloComToggle {
+    display: flex;
+    align-items: center;
+    gap: 0.6em;
+    margin-bottom: 0.3em;
+}
+
+.rotuloComToggle label {
+    margin: 0;
+}
+
+.simNao {
+    display: flex;
+    border: 1px solid var(--preto);
+    border-radius: 3px;
+    overflow: hidden;
+}
+
+.simNao button {
+    padding: 0 0.5em;
+    background-color: var(--branco);
+    border: none;
+    font-family: var(--fonte);
+    font-size: 0.7rem;
+    cursor: pointer;
+}
+
+.simNao button + button {
+    border-left: 1px solid var(--preto);
+}
+
+.simNao .escolhido {
+    background-color: var(--cinza);
+}
+
+.nota {
+    margin: 0 0 0.5em;
+    color: #666666;
+    font-size: 0.7rem;
+}
+
+/* ---------- Caixa de texto com contador ---------- */
+.areaTexto {
+    position: relative;
+}
+
+.areaTexto textarea {
+    resize: none;
+    padding-bottom: 1.8em;
+}
+
+.contador {
+    position: absolute;
+    right: 0.8em;
+    bottom: 0.5em;
+    color: #888888;
+    font-size: 0.65rem;
+}
+
+/* ---------- Meta financeira ---------- */
+.valores {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.8em;
+}
+
+.valores label {
+    font-size: 0.75rem;
+    font-weight: 400;
+}
+
+/* ---------- Botão salvar ---------- */
+.erro {
+    margin: 0.5em 0;
+    color: var(--vermelho);
+    font-size: 0.9rem;
+}
+
+.acoes {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 0.5em;
+}
+
+.salvar {
+    padding: 0.5em 1.8em;
+    background-color: var(--verdeClaro);
+    color: var(--branco);
+    border: none;
+    border-radius: 6px;
+    font-family: var(--fonte);
+    font-size: 1.1rem;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.salvar:hover {
+    background-color: var(--verdeEscuro);
+}
+
+.salvar:disabled {
+    background-color: var(--cinza);
+    cursor: default;
+}
+
+/* ---------- Celular: uma coluna só ---------- */
+@media (max-width: 700px) {
+    .colunas {
+        grid-template-columns: 1fr;
+        gap: 0;
+    }
+
+    .secao {
+        padding: 1em;
+    }
+}

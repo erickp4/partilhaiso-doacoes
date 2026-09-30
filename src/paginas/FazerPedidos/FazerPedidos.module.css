@@ -1,0 +1,280 @@
+.pagina {
+    min-height: 100vh;
+    padding: 1.5em 5%;
+    background-color: #F3F2EF;
+}
+
+.aviso {
+    padding: 2em;
+    color: #555555;
+}
+
+/* ---------- Cartão com borda verde ---------- */
+.cartao {
+    max-width: 1000px;
+    margin: 0 auto;
+    padding-bottom: 2em;
+    background-color: var(--branco);
+    border: 2px solid var(--verdeClaro);
+    border-radius: 6px;
+}
+
+.topo {
+    display: flex;
+    align-items: flex-start;
+    gap: 2em;
+    padding: 1em 2em 0;
+}
+
+.voltar {
+    padding: 0;
+    background: none;
+    border: none;
+    font-size: 2rem;
+    line-height: 1;
+    cursor: pointer;
+    color: var(--preto);
+}
+
+.titulo {
+    margin: 0;
+    font-size: 1.5rem;
+    font-weight: 500;
+}
+
+.subtitulo {
+    margin: 0.2em 0 0;
+    max-width: 220px;
+    color: #666666;
+    font-size: 0.65rem;
+}
+
+.erro {
+    margin: 0.5em 2em 0;
+    color: var(--vermelho);
+    font-size: 0.9rem;
+}
+
+/* ---------- Duas colunas com linha verde no meio ---------- */
+.colunas {
+    display: grid;
+    grid-template-columns: 1fr 1.3fr;
+    margin-top: 1em;
+}
+
+.esquerda {
+    padding: 2em;
+}
+
+.direita {
+    padding: 0 2em;
+    border-left: 2px solid var(--verdeClaro);
+}
+
+.direita h2 {
+    margin: 1.2em 0 0.8em;
+    font-size: 1.3rem;
+    font-weight: 500;
+}
+
+.vazio {
+    color: #666666;
+    font-size: 0.9rem;
+}
+
+/* ---------- Formulário "Pedir novo item" ---------- */
+.novo {
+    max-width: 290px;
+    margin: 1em auto 0;
+    padding: 1em 1.5em 1.5em;
+    border: 1px solid #C4C4C4;
+}
+
+.novo h2 {
+    margin: 0 0 1em;
+    font-size: 1.3rem;
+    font-weight: 500;
+    text-align: center;
+}
+
+.campo {
+    margin-bottom: 1.2em;
+}
+
+/* Rótulo verde, como no design */
+.campo label {
+    display: inline-block;
+    min-width: 120px;
+    margin-bottom: 0.3em;
+    padding: 0 0.8em;
+    background-color: var(--verdeClaro);
+    color: var(--branco);
+    font-size: 0.95rem;
+}
+
+.campo input {
+    box-sizing: border-box;
+    display: block;
+    width: 100%;
+    padding: 0.5em 0.6em;
+    border: 1px solid #C4C4C4;
+    border-radius: 4px;
+    font-family: var(--fonte);
+    font-size: 0.85rem;
+}
+
+.campo .pequeno {
+    width: 120px;
+}
+
+.criar {
+    display: block;
+    margin: 1.5em auto 0;
+    padding: 0.1em 2.2em;
+    background-color: var(--verdeClaro);
+    color: var(--branco);
+    border: none;
+    font-family: var(--fonte);
+    font-size: 1.2rem;
+    cursor: pointer;
+}
+
+.criar:hover {
+    background-color: var(--verdeEscuro);
+}
+
+/* ---------- Lista de itens ---------- */
+.linha {
+    display: flex;
+    align-items: flex-end;
+    gap: 0.6em;
+    margin-bottom: 0.9em;
+}
+
+.item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.6em;
+    box-sizing: border-box;
+    width: 290px;
+    flex-shrink: 0;
+    padding: 0.35em 0.7em;
+    border: 1px solid #C4C4C4;
+    border-radius: 6px;
+    font-size: 0.95rem;
+    font-weight: 600;
+}
+
+.quantidades {
+    display: flex;
+    gap: 0.5em;
+}
+
+.quantidades label {
+    display: flex;
+    flex-direction: column;
+}
+
+.quantidades small {
+    margin-bottom: 0.1em;
+    font-size: 0.6rem;
+}
+
+.quantidades input {
+    box-sizing: border-box;
+    width: 78px;
+    padding: 0.4em 0.5em;
+    border: 1px solid #C4C4C4;
+    border-radius: 4px;
+    font-family: var(--fonte);
+    font-size: 0.85rem;
+}
+
+/* ---------- Interruptor ---------- */
+.interruptor {
+    position: relative;
+    width: 52px;
+    height: 24px;
+    flex-shrink: 0;
+    padding: 0;
+    background-color: var(--branco);
+    border: 1px solid #333333;
+    border-radius: 12px;
+    cursor: pointer;
+}
+
+.bolinha {
+    position: absolute;
+    top: 2px;
+    left: 2px;
+    width: 18px;
+    height: 18px;
+    background-color: var(--vermelho);
+    border-radius: 50%;
+    transition: left 0.2s, background-color 0.2s;
+}
+
+.ligado .bolinha {
+    left: calc(100% - 20px);
+    background-color: var(--verdeClaro);
+}
+
+/* ---------- Celular: uma coluna só ---------- */
+@media (max-width: 760px) {
+    .colunas {
+        grid-template-columns: 1fr;
+    }
+
+    .direita {
+        border-left: none;
+        border-top: 2px solid var(--verdeClaro);
+        padding-top: 0.5em;
+    }
+
+    .linha {
+        flex-wrap: wrap;
+    }
+
+    .esquerda {
+        padding: 1em;
+    }
+}
+/* ---------- Botões de prioridade e excluir ---------- */
+.item span {
+    flex: 1;
+}
+
+.botoes {
+    display: flex;
+    align-items: center;
+    gap: 0.3em;
+}
+
+.iconeBotao {
+    display: flex;
+    padding: 0.1em;
+    background: none;
+    border: none;
+    color: #888888;
+    cursor: pointer;
+}
+
+.iconeBotao:hover {
+    color: var(--preto);
+}
+
+.prioridadeAtiva,
+.prioridadeAtiva:hover {
+    color: var(--vermelho);
+}
+
+.excluir:hover {
+    color: var(--vermelho);
+}
+
+/* Item desativado fica mais apagado */
+.desativado {
+    background-color: #FAFAFA;
+    color: #888888;
+}

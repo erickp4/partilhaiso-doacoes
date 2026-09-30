@@ -1,0 +1,182 @@
+/* Fundo escurecido que cobre a tela toda */
+.fundo {
+    position: fixed;
+    inset: 0;
+    z-index: 1000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 1em;
+    background-color: rgba(0, 0, 0, 0.45);
+}
+
+/* A janela do meio */
+.janela {
+    width: 100%;
+    max-width: 395px;
+    max-height: 100%;
+    overflow-y: auto;
+    background-color: var(--branco);
+    border: 1px solid var(--verdeClaro);
+    border-radius: 4px;
+}
+
+.cabecalho {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.45em 1em;
+    background-color: var(--verdeClaro);
+    color: var(--branco);
+}
+
+.cabecalho h2 {
+    margin: 0;
+    font-size: 1.4rem;
+    font-weight: 500;
+}
+
+.fechar {
+    position: absolute;
+    right: 0.8em;
+    top: 50%;
+    transform: translateY(-50%);
+    display: flex;
+    padding: 0;
+    background: none;
+    border: none;
+    color: var(--branco);
+    cursor: pointer;
+}
+
+/* ---------- Área da foto ---------- */
+.envio {
+    padding: 1em 1.2em;
+    border-bottom: 1px solid var(--verdeClaro);
+}
+
+.zona {
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 145px;
+    padding: 1em;
+    border: 1px solid #9BD9B0;
+    border-radius: 6px;
+    text-align: center;
+    font-size: 0.8rem;
+}
+
+/* Quando uma foto está sendo arrastada por cima */
+.zonaAtiva {
+    background-color: var(--verdeChat);
+    border-style: dashed;
+}
+
+.zona p {
+    margin: 0.2em 0 0;
+}
+
+.cinza {
+    color: #999999;
+}
+
+.link {
+    padding: 0;
+    background: none;
+    border: none;
+    color: var(--verdeClaro);
+    font-family: var(--fonte);
+    font-size: inherit;
+    text-decoration: underline;
+    cursor: pointer;
+}
+
+.link:hover {
+    color: var(--verdeEscuro);
+}
+
+.previa {
+    max-width: 100%;
+    max-height: 200px;
+    margin-bottom: 0.6em;
+    border-radius: 4px;
+    object-fit: contain;
+}
+
+/* ---------- Legenda e botões ---------- */
+.legenda {
+    padding: 0.6em 1.2em 1em;
+}
+
+.legenda label {
+    display: block;
+    margin-bottom: 0.3em;
+    font-size: 1rem;
+}
+
+.legenda textarea {
+    box-sizing: border-box;
+    width: 100%;
+    padding: 0.5em 0.6em;
+    border: 1px solid #9BD9B0;
+    border-radius: 6px;
+    resize: none;
+    font-family: var(--fonte);
+    font-size: 0.9rem;
+}
+
+.legenda textarea:focus {
+    outline: 1px solid var(--verdeClaro);
+}
+
+.erro {
+    margin: 0.5em 0 0;
+    color: var(--vermelho);
+    font-size: 0.85rem;
+}
+
+.acoes {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2em;
+    margin-top: 0.6em;
+}
+
+.cancelar,
+.postar {
+    padding: 0.05em 0;
+    border-radius: 4px;
+    font-family: var(--fonte);
+    font-size: 1.15rem;
+    cursor: pointer;
+}
+
+.cancelar {
+    background-color: var(--branco);
+    border: 1px solid #888888;
+    color: #555555;
+}
+
+.cancelar:hover {
+    background-color: #F5F5F5;
+}
+
+.postar {
+    background-color: var(--verdeClaro);
+    border: 1px solid var(--verdeClaro);
+    color: var(--branco);
+}
+
+.postar:hover {
+    background-color: var(--verdeEscuro);
+}
+
+.postar:disabled {
+    background-color: var(--cinza);
+    border-color: var(--cinza);
+    cursor: default;
+}

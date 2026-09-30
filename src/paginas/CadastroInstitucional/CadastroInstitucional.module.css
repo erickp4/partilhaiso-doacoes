@@ -1,0 +1,150 @@
+.pagina {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+.principal {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 1.5em 5% 2.5em;
+}
+
+/* ---------- Seta + título ---------- */
+.topo {
+    width: 100%;
+    max-width: 480px;
+    display: grid;
+    grid-template-columns: 48px 1fr 48px; /* seta | título | espaço vazio */
+    align-items: start;
+    margin-bottom: 1.2em;
+}
+
+.voltar {
+    background: none;
+    border: none;
+    font-size: 2rem;
+    line-height: 1;
+    text-align: left;
+    padding: 0;
+    cursor: pointer;
+    color: var(--preto);
+}
+
+.titulo {
+    margin: 0;
+    font-size: 1.6rem;
+    font-weight: 400;
+    text-align: center;
+}
+
+/* ---------- Formulário ---------- */
+.formulario {
+    width: 100%;
+    max-width: 400px;
+    display: flex;
+    flex-direction: column;
+}
+
+.campo {
+    margin-bottom: 1em;
+}
+
+.campo label {
+    display: block;
+    margin-bottom: 0.3em;
+    font-size: 0.85rem;
+    font-weight: 600;
+}
+
+.campo input {
+    box-sizing: border-box;
+    width: 100%;
+    padding: 0.8em;
+    border: 1px solid var(--preto);
+    border-radius: 6px;
+    font-family: var(--fonte);
+    font-size: 1rem;
+}
+
+.dica {
+    margin: 0.3em 0 0;
+    font-size: 0.7rem;
+    color: #555555;
+}
+
+/* ---------- Seletor CPF / CNPJ ---------- */
+.abas {
+    display: flex;
+    gap: 0.4em;
+    margin-bottom: 0.3em;
+}
+
+.aba {
+    padding: 0.1em 0.6em;
+    background-color: var(--branco);
+    border: 1px solid var(--cinza);
+    border-radius: 4px;
+    font-family: var(--fonte);
+    font-size: 0.8rem;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.abaAtiva {
+    background-color: var(--cinza);
+}
+
+/* ---------- Senha com olhinho ---------- */
+.senha {
+    position: relative;
+}
+
+.senha input {
+    padding-right: 3em;
+}
+
+.olho {
+    position: absolute;
+    right: 0.8em;
+    top: 50%;
+    transform: translateY(-50%);
+    display: flex;
+    background: none;
+    border: none;
+    color: var(--preto);
+    cursor: pointer;
+    padding: 0;
+}
+
+/* ---------- Botão e links ---------- */
+.erro {
+    margin: 0 0 0.8em;
+    color: var(--vermelho);
+    font-size: 0.9rem;
+}
+
+.criar {
+    margin-top: 0.8em;
+    padding: 0.4em;
+    background-color: var(--verdeClaro);
+    color: var(--branco);
+    border: none;
+    border-radius: 6px;
+    font-family: var(--fonte);
+    font-size: 1.8rem;
+    cursor: pointer;
+}
+
+.criar:hover {
+    background-color: var(--verdeEscuro);
+}
+
+.jaTenho {
+    align-self: flex-end;
+    margin-top: 0.6em;
+    color: var(--preto);
+    font-size: 0.85rem;
+}

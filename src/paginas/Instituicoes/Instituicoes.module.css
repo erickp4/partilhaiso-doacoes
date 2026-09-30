@@ -1,0 +1,183 @@
+.pagina {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    background-color: #F5F5F5;
+}
+
+/* ---------- Topo: seta + título ---------- */
+.topo {
+    display: flex;
+    align-items: center;
+    gap: 2em;
+    padding: 1em 3%;
+    border-bottom: 1px solid #E8E8E8;
+}
+
+.voltar {
+    background: none;
+    border: none;
+    font-size: 2rem;
+    cursor: pointer;
+    color: var(--preto);
+}
+
+.tituloTopo {
+    margin: 0;
+    font-size: 1.5rem;
+    font-weight: 500;
+}
+
+/* ---------- Título e busca ---------- */
+.principal {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 1em 5% 2em;
+}
+
+.titulo {
+    margin: 0 0 0.4em;
+    font-size: 2rem;
+    font-weight: 500;
+    text-align: center;
+}
+
+.busca {
+    display: flex;
+    align-items: center;
+    gap: 0.6em;
+    width: 100%;
+    max-width: 480px;
+    box-sizing: border-box;
+    padding: 0.5em 1em;
+    background-color: var(--verdeChat);
+    border-radius: 6px;
+}
+
+.busca input {
+    flex: 1;
+    background: none;
+    border: none;
+    outline: none;
+    font-family: var(--fonte);
+    font-size: 1rem;
+    color: var(--verdeEscuro);
+}
+
+.busca input::placeholder {
+    color: #4F8F5F;
+}
+
+/* ---------- Lista de cards ---------- */
+.lista {
+    width: 100%;
+    max-width: 780px;
+    margin-top: 1.5em;
+}
+
+.sugestoes {
+    margin: 0 0 0.5em;
+    color: #555555;
+    font-size: 1.1rem;
+}
+
+.aviso {
+    color: #555555;
+}
+
+.card {
+    display: grid;
+    grid-template-columns: 1.3fr 1fr auto;
+    align-items: center;
+    margin-bottom: 1.2em;
+    padding: 0.4em 0.6em;
+    background-color: var(--branco);
+    border-radius: 8px;
+}
+
+.info {
+    display: flex;
+    align-items: center;
+    gap: 1em;
+}
+
+.foto,
+.semFoto {
+    width: 70px;
+    height: 70px;
+    flex-shrink: 0;
+    border-radius: 4px;
+    object-fit: cover;
+}
+
+.semFoto {
+    background-color: var(--cinza);
+}
+
+.nome {
+    margin: 0;
+    font-size: 1.3rem;
+    font-weight: 500;
+}
+
+.descricao {
+    margin: 0.2em 0 0;
+    font-size: 0.75rem;
+}
+
+.recursos {
+    align-self: stretch;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 0 1em;
+    border-left: 1px solid #9BD9B0;
+}
+
+.recursos span {
+    font-size: 0.75rem;
+}
+
+.recursos p {
+    margin: 0.3em 0 0;
+}
+
+.acao {
+    align-self: stretch;
+    display: flex;
+    align-items: center;
+    padding-left: 1.2em;
+    border-left: 1px solid #9BD9B0;
+}
+
+.doar {
+    padding: 0.3em 1.6em;
+    background-color: var(--verdeClaro);
+    color: var(--branco);
+    font-size: 1.2rem;
+    font-weight: 600;
+    text-decoration: none;
+    border-radius: 6px;
+}
+
+.doar:hover {
+    background-color: var(--verdeEscuro);
+}
+
+/* ---------- Celular: os blocos do card ficam um embaixo do outro ---------- */
+@media (max-width: 640px) {
+    .card {
+        grid-template-columns: 1fr;
+        gap: 0.8em;
+        padding: 1em;
+    }
+
+    .recursos,
+    .acao {
+        padding: 0.8em 0 0;
+        border-left: none;
+        border-top: 1px solid #9BD9B0;
+    }
+}

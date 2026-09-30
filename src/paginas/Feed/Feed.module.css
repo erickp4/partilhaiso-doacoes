@@ -1,0 +1,189 @@
+.pagina {
+    min-height: 100vh;
+    display: grid;
+    grid-template-columns: 230px 1fr;
+    background-color: #F3F2EF;
+}
+
+/* ---------- Barra lateral ---------- */
+.lateral {
+    display: flex;
+    flex-direction: column;
+    background-color: var(--branco);
+    border-right: 1px solid var(--cinza);
+}
+
+.topoLateral {
+    padding: 1.2em 1.2em 1.5em;
+    border-bottom: 1px solid #9BD9B0;
+}
+
+.logo {
+    height: 48px;
+}
+
+.boasVindas {
+    display: flex;
+    align-items: center;
+    gap: 0.6em;
+    margin: 1.5em 0 1em 1.5em;
+}
+
+.boasVindas span {
+    display: block;
+    color: var(--verdeClaro);
+    font-size: 0.65rem;
+}
+
+.boasVindas strong {
+    color: var(--verdeEscuro);
+    font-size: 1rem;
+}
+
+.fotoUsuario {
+    width: 26px;
+    height: 26px;
+    border-radius: 3px;
+    object-fit: cover;
+    background-color: var(--cinza);
+}
+
+.menu {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.8em;
+    margin-left: 1.5em;
+}
+
+.menu a {
+    color: var(--preto);
+    font-size: 1.1rem;
+    font-weight: 700;
+    text-decoration: none;
+}
+
+.menu a:hover {
+    color: var(--verdeEscuro);
+}
+
+.menu .postar {
+    display: flex;
+    align-items: center;
+    gap: 0.3em;
+    padding: 0.1em 0.4em;
+    border: 1px solid var(--preto);
+    border-radius: 4px;
+}
+
+.postar span {
+    font-size: 1.3rem;
+    font-weight: 400;
+    line-height: 1;
+}
+
+.seguindo {
+    padding: 1.5em 1.2em;
+}
+
+.seguindo h2,
+.locais h2 {
+    margin: 0 0 1em;
+    font-size: 1rem;
+    font-weight: 500;
+}
+
+.seguindo ul,
+.locais ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.seguindo li,
+.locais li {
+    display: flex;
+    align-items: center;
+    gap: 0.7em;
+    margin-bottom: 0.9em;
+    font-size: 0.8rem;
+}
+
+.mini {
+    width: 20px;
+    height: 20px;
+    flex-shrink: 0;
+    border-radius: 3px;
+    object-fit: cover;
+    background-color: var(--cinza);
+}
+
+/* ---------- Área principal ---------- */
+.principal {
+    padding: 1.2em 2em;
+}
+
+.pergunta {
+    margin: 0 0 0.4em;
+    font-size: 1.1rem;
+    font-weight: 500;
+}
+
+.busca {
+    display: flex;
+    align-items: center;
+    gap: 0.6em;
+    max-width: 700px;
+    box-sizing: border-box;
+    padding: 0.4em 1em;
+    background-color: var(--verdeClaro);
+    border-radius: 4px;
+}
+
+.busca input {
+    flex: 1;
+    background: none;
+    border: none;
+    outline: none;
+    color: var(--branco);
+    font-family: var(--fonte);
+    font-size: 0.9rem;
+}
+
+.busca input::placeholder {
+    color: var(--branco);
+}
+
+.colunas {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) 210px;
+    gap: 1.5em;
+    align-items: start;
+    margin-top: 1.5em;
+}
+
+.feed {
+    max-width: 520px;
+    justify-self: center;
+    width: 100%;
+}
+
+.aviso {
+    color: #555555;
+}
+
+.locais {
+    padding: 0.8em 1em;
+    background-color: var(--branco);
+}
+
+/* ---------- Celular e telas pequenas ---------- */
+@media (max-width: 900px) {
+    .pagina {
+        grid-template-columns: 1fr;
+    }
+
+    .colunas {
+        grid-template-columns: 1fr;
+    }
+}

@@ -1,0 +1,95 @@
+.post {
+    margin-bottom: 2em;
+    background-color: var(--branco);
+    border-radius: 4px;
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.15);
+    overflow: hidden;
+}
+
+.topo {
+    display: flex;
+    align-items: center;
+    gap: 0.8em;
+    padding: 0.8em 1em 0;
+}
+
+.avatar {
+    width: 40px;
+    height: 40px;
+    flex-shrink: 0;
+    border-radius: 50%;
+    object-fit: cover;
+    background-color: var(--cinza);
+}
+
+.nome {
+    font-size: 0.8rem;
+}
+
+.descricao,
+.tempo {
+    margin: 0;
+    font-size: 0.7rem;
+    color: #555555;
+}
+
+.texto {
+    margin: 0.8em 1em;
+    font-size: 0.9rem;
+}
+
+.foto {
+    display: block;
+    width: calc(100% - 3em);
+    max-height: 300px;
+    margin: 0 auto 1em;
+    object-fit: cover;
+}
+
+.acoes {
+    display: flex;
+    justify-content: space-around;
+    padding: 0.6em 1em;
+    border-top: 1px solid #9BD9B0;
+}
+
+.botao {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.4em;
+    min-width: 110px;
+    padding: 0.2em 0.8em;
+    background-color: var(--verdeClaro);
+    color: var(--branco);
+    border: none;
+    border-radius: 4px;
+    font-family: var(--fonte);
+    font-size: 0.75rem;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.botao:hover,
+.curtido {
+    background-color: var(--verdeEscuro);
+}
+/* Botão de lixeira no canto direito do topo da postagem */
+.excluir {
+    display: flex;
+    margin-left: auto;
+    padding: 0.2em;
+    background: none;
+    border: none;
+    color: #888888;
+    cursor: pointer;
+}
+
+.excluir:hover {
+    color: var(--vermelho);
+}
+
+.excluir:disabled {
+    opacity: 0.4;
+    cursor: default;
+}

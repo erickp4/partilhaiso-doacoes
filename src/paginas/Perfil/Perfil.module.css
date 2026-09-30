@@ -1,0 +1,225 @@
+.pagina {
+    min-height: 100vh;
+    display: grid;
+    grid-template-columns: 230px 1fr;
+    background-color: #F3F2EF;
+}
+
+.principal {
+    min-width: 0;
+}
+
+.aviso {
+    padding: 2em;
+    color: #555555;
+}
+
+/* ---------- Capa e cabeçalho do perfil ---------- */
+.capa {
+    position: relative;
+    height: 140px;
+    background-color: #E3E3E3;
+}
+
+.camera {
+    position: absolute;
+    top: 12px;
+    right: 16px;
+    display: flex;
+    padding: 0;
+    background: none;
+    border: none;
+    color: var(--preto);
+    cursor: pointer;
+}
+
+.cabecalho {
+    display: flex;
+    align-items: flex-start;
+    gap: 1.5em;
+    padding: 0 2em 1em;
+    background-color: var(--branco);
+    border-bottom: 2px solid var(--verdeClaro);
+}
+
+.identidade {
+    margin-top: -70px; /* faz a foto "subir" e sobrepor a capa */
+    text-align: center;
+}
+
+.avatar {
+    display: block;
+    box-sizing: border-box;
+    width: 140px;
+    height: 140px;
+    border: 4px solid var(--branco);
+    border-radius: 50%;
+    object-fit: cover;
+    background-color: var(--cinza);
+}
+
+.nome {
+    margin: 0.2em 0 0;
+    font-size: 1.4rem;
+    font-weight: 600;
+}
+
+.dados {
+    flex: 1;
+    padding-top: 0.8em;
+}
+
+.dados p {
+    margin: 0.2em 0;
+    font-size: 0.95rem;
+}
+
+.dados small {
+    font-size: 0.65rem;
+    color: #555555;
+}
+
+.seguir {
+    margin-bottom: 0.4em;
+    padding: 0 0.7em;
+    background-color: var(--verdeClaro);
+    color: var(--branco);
+    border: none;
+    border-radius: 3px;
+    font-family: var(--fonte);
+    font-size: 0.75rem;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.seguir:hover {
+    background-color: var(--verdeEscuro);
+}
+
+.icones {
+    display: flex;
+    gap: 0.8em;
+    padding-top: 0.8em;
+}
+
+.icone {
+    display: flex;
+    padding: 0;
+    background: none;
+    border: none;
+    color: var(--verdeClaro);
+    cursor: pointer;
+}
+
+.icone:hover {
+    color: var(--verdeEscuro);
+}
+
+/* ---------- Conteúdo ---------- */
+.conteudo {
+    padding: 1em 2em;
+}
+
+.barra {
+    position: relative;
+    max-width: 260px;
+    padding: 0.2em 0.8em;
+    overflow: hidden;
+    background-color: var(--verdeClaro);
+    border-radius: 3px;
+    color: var(--branco);
+    font-size: 0.85rem;
+    font-weight: 600;
+    text-align: center;
+}
+
+/* Parte "preenchida" da meta, em verde mais escuro, por trás do texto */
+.progresso {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    background-color: var(--verdeEscuro);
+}
+
+.barra span {
+    position: relative;
+}
+
+.legenda {
+    font-size: 0.65rem;
+}
+
+.secao {
+    margin: 1.2em 0 0.6em;
+    font-size: 1rem;
+    font-weight: 500;
+}
+
+.itens {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 1em;
+}
+
+.item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0.5em;
+    background-color: var(--cinza);
+    border-radius: 3px;
+    text-align: center;
+}
+
+.item h3 {
+    margin: 0;
+    font-size: 0.7rem;
+    font-weight: 500;
+}
+
+.item p {
+    margin: 0;
+    font-size: 0.65rem;
+}
+
+.emoji {
+    margin: 0.4em 0;
+    font-size: 3rem;
+    line-height: 1.2;
+}
+
+.urgente {
+    background-color: var(--vermelho);
+    color: var(--branco);
+}
+
+.sobre {
+    min-height: 80px;
+    margin: 0;
+    font-size: 0.9rem;
+}
+
+/* ---------- Publicações ---------- */
+.publicacoes {
+    margin-top: 1.5em;
+    padding: 0.5em 2em 1.5em;
+    background-color: #E3E3E3;
+}
+
+.posts {
+    max-width: 520px;
+    margin: 0 auto;
+}
+
+/* ---------- Telas pequenas ---------- */
+@media (max-width: 900px) {
+    .pagina {
+        grid-template-columns: 1fr;
+    }
+
+    .cabecalho {
+        flex-wrap: wrap;
+    }
+}

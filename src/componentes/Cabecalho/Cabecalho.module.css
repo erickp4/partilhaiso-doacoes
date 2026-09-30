@@ -2,6 +2,30 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 1.1em 20em;
+    padding: 1em 5%;
     background-color: var(--branco);
+    border-bottom: 1px solid var(--cinza);
+}
+
+.cabecalho img {
+    height: 56px;
+}
+
+.menu {
+    display: flex;
+    align-items: center;
+    gap: 1.5em;
+}
+
+.botaoLogin {
+    background-color: var(--verdeClaro);
+    color: var(--branco);
+    font-weight: 600;
+    text-decoration: none;
+    padding: 0.4em 1em;
+    border-radius: 6px;
+}
+
+.botaoLogin:hover {
+    background-color: var(--verdeEscuro);
 }

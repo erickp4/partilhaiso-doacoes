@@ -1,0 +1,37 @@
+.campo {
+    margin-bottom: 1em;
+}
+
+.campo label {
+    display: block;
+    margin-bottom: 0.3em;
+    font-size: 0.85rem;
+    font-weight: 600;
+}
+
+.senha {
+    position: relative;
+}
+
+.senha input {
+    box-sizing: border-box;
+    width: 100%;
+    padding: 0.8em 3em 0.8em 0.8em;
+    border: 1px solid var(--preto);
+    border-radius: 6px;
+    font-family: var(--fonte);
+    font-size: 1rem;
+}
+
+.olho {
+    position: absolute;
+    right: 0.8em;
+    top: 50%;
+    transform: translateY(-50%);
+    display: flex;
+    background: none;
+    border: none;
+    color: var(--preto);
+    cursor: pointer;
+    padding: 0;
+}

@@ -1,7 +1,11 @@
 .link {
-    color: var(--verde);
+    color: var(--verdeClaro);
     font-size: 18px;
-    font-weight: 400;
-    padding: 1em;
+    font-weight: 600;
+    padding: 0.5em 1em;
     text-decoration: none;
+}
+
+.link:hover {
+    color: var(--verdeEscuro);
 }
