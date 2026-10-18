@@ -187,3 +187,15 @@
         grid-template-columns: 1fr;
     }
 }
+
+.locais a {
+    display: flex;
+    align-items: center;
+    gap: 0.7em;
+    color: inherit;
+    text-decoration: none;
+}
+
+.locais a:hover {
+    color: var(--verdeEscuro);
+}

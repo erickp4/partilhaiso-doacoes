@@ -30,6 +30,10 @@ function BarraLateral({ perfilId, onPostou = () => {} }){
     const linkPerfil = usuario.instituicaoId
         ? `/instituicao/${usuario.instituicaoId}`
         : '/perfil';
+    // Se a pessoa logada tem uma instituição, usa a foto e o nome dela
+    const minhaInstituicao = instituicoes.find(i => i.id === usuario.instituicaoId);
+    const fotoPerfil = minhaInstituicao?.imagem || usuario.imagem;
+    const nomePerfil = minhaInstituicao?.nome || usuario.nome;
 
     return (
         <aside className={styles.lateral}>
@@ -39,12 +43,12 @@ function BarraLateral({ perfilId, onPostou = () => {} }){
                 </Link>
 
                 <div className={styles.boasVindas}>
-                    {usuario.imagem
-                        ? <img src={usuario.imagem} alt="" className={styles.fotoUsuario} />
+                    {fotoPerfil
+                        ? <img src={fotoPerfil} alt="" className={styles.fotoUsuario} />
                         : <div className={styles.fotoUsuario} />}
                     <div>
                         <span>Bem vindo!</span>
-                        <strong>{usuario.nome}</strong>
+                        <strong>{nomePerfil}</strong>
                     </div>
                 </div>
 

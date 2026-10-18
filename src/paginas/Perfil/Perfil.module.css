@@ -44,9 +44,10 @@
 
 .identidade {
     margin-top: -70px; /* faz a foto "subir" e sobrepor a capa */
+    position: relative;
+    z-index: 1;
     text-align: center;
 }
-
 .avatar {
     display: block;
     box-sizing: border-box;
@@ -171,23 +172,29 @@
     background-color: var(--cinza);
     border-radius: 3px;
     text-align: center;
-}
-
-.item h3 {
-    margin: 0;
-    font-size: 0.7rem;
-    font-weight: 500;
-}
-
-.item p {
-    margin: 0;
-    font-size: 0.65rem;
+     border: none;
+    color: var(--preto);
+    font-family: var(--fonte);
+    cursor: pointer;
 }
 
 .emoji {
     margin: 0.4em 0;
     font-size: 3rem;
     line-height: 1.2;
+}
+
+.item strong {
+    font-size: 0.7rem;
+    font-weight: 500;
+}
+
+.item > span:last-child {
+    font-size: 0.65rem;
+}
+
+.item:hover {
+    filter: brightness(0.95);
 }
 
 .urgente {

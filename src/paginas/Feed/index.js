@@ -102,8 +102,10 @@ function Feed(){
                         <ul>
                             {locais.map(item => (
                                 <li key={item.id}>
-                                    <Miniatura instituicao={item} />
-                                    {item.nome}
+                                    <Link to={`/instituicao/${item.id}`}>
+                                        <Miniatura instituicao={item} />
+                                        {item.nome}
+                                    </Link>
                                 </li>
                             ))}
                         </ul>

@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import Rodape from '../../componentes/Rodape';
 import styles from './Instituicoes.module.css';
+import Doacao from '../../componentes/Doacao';
 
 // Tira acentos e deixa minúsculo, para "paraiso" achar "Paraíso"
 function normalizar(texto){
@@ -13,6 +14,7 @@ function Instituicoes(){
     const [instituicoes, setInstituicoes] = useState([]);
     const [busca, setBusca] = useState('');
     const [erro, setErro] = useState(false);
+    const [doando, setDoando] = useState(null); // instituição escolhida para doar
 
     // Busca os dados do db.json uma vez, quando a página abre
     useEffect(() => {
@@ -73,7 +75,7 @@ function Instituicoes(){
 
                     {filtradas.map(item => (
                         <article key={item.id} className={styles.card}>
-                            <div className={styles.info}>
+                            <Link to={`/instituicao/${item.id}`} className={styles.info}>
                                 {item.imagem
                                     ? <img src={item.imagem} alt={item.nome} className={styles.foto} />
                                     : <div className={styles.semFoto} />}
@@ -81,7 +83,7 @@ function Instituicoes(){
                                     <h3 className={styles.nome}>{item.nome}</h3>
                                     <p className={styles.descricao}>{item.descricao}</p>
                                 </div>
-                            </div>
+                            </Link>
 
                             <div className={styles.recursos}>
                                 <span>Recursos em falta:</span>
@@ -89,16 +91,24 @@ function Instituicoes(){
                             </div>
 
                             <div className={styles.acao}>
-                                <Link to={`/doar/${item.id}`} className={styles.doar}>
+                                <button
+                                    type="button"
+                                    className={styles.doar}
+                                    onClick={() => setDoando(item)}
+                                >
                                     Doar
-                                </Link>
+                                </button>
                             </div>
+                            
                         </article>
                     ))}
                 </section>
             </main>
-
+            {doando && (
+                <Doacao instituicao={doando} onFechar={() => setDoando(null)} />
+            )}
             <Rodape />
+            
         </div>
     );
 }

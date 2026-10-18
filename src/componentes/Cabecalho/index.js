@@ -9,9 +9,9 @@ function Cabecalho({ mostrarLogin = true }){
             <Link to="/">
                 <img src={logo} alt="Logo Partilhaiso" />
             </Link>
-            {mostrarLogin && (
+            {/* {mostrarLogin && (
                 <Link to="/login" className={styles.botaoLogin}>Log in</Link>
-            )}
+            )} */}
             <nav className={styles.menu}>
                 <CabecalhoLink url="/instituicoes">Instituições</CabecalhoLink>
                 <CabecalhoLink url="/sobre">Quem somos</CabecalhoLink>

@@ -1,11 +1,14 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
 import styles from './Postagem.module.css';
 
-// Calcula "agora", "5 min", "3h", "2d" a partir do momento da postagem
-function tempoDecorrido(post){
-    if (!post.criadoEm) return post.tempo || ''; // posts antigas, com texto fixo
+const API = 'http://localhost:3001';
 
-    const minutos = Math.floor((Date.now() - post.criadoEm) / 60000);
+// Calcula "agora", "5 min", "3h", "2d" a partir do momento em que foi criado
+function tempoDecorrido(item){
+    if (!item.criadoEm) return item.tempo || ''; // posts antigas, com texto fixo
+
+    const minutos = Math.floor((Date.now() - item.criadoEm) / 60000);
     if (minutos < 1) return 'agora';
     if (minutos < 60) return `${minutos} min`;
 
@@ -16,44 +19,120 @@ function tempoDecorrido(post){
 }
 
 function Postagem({ post, podeExcluir = false, onExcluido = () => {} }){
-    // Guarda se a pessoa curtiu ou não
     const [curtido, setCurtido] = useState(false);
     const [excluindo, setExcluindo] = useState(false);
+    const [linkCopiado, setLinkCopiado] = useState(false);
 
-    // Vem do fetch com ?_expand=instituicao (dados da instituição dona do post)
+    const [comentariosAbertos, setComentariosAbertos] = useState(false);
+    const [comentarios, setComentarios] = useState([]);
+    const [novoComentario, setNovoComentario] = useState('');
+    const [enviando, setEnviando] = useState(false);
+    const [erro, setErro] = useState('');
+
+    // Instituição dona do post (o Feed e o Perfil enviam junto com o post)
     const instituicao = post.instituicao;
 
-    async function excluir(){
-    if (!window.confirm('Excluir esta publicação? Essa ação não pode ser desfeita.')) return;
+    // Busca os comentários desta postagem
+    useEffect(() => {
+        fetch(`${API}/comentarios?postId=${post.id}&_sort=criadoEm&_order=asc`)
+            .then(r => r.json())
+            .then(lista => setComentarios(Array.isArray(lista) ? lista : []))
+            .catch(() => {});
+    }, [post.id]);
 
-    setExcluindo(true);
+    async function comentar(evento){
+        evento.preventDefault();
 
-    try {
-        // DELETE apaga o registro do db.json
-        const resposta = await fetch(`http://localhost:3001/posts/${post.id}`, {
-            method: 'DELETE'
-        });
+        const texto = novoComentario.trim();
+        if (!texto) return;
 
-        if (!resposta.ok) throw new Error('falhou');
+        setEnviando(true);
+        setErro('');
 
-        onExcluido(); // avisa a página para recarregar as publicações
-    } catch {
-        alert('Não foi possível excluir. O json-server está rodando?');
-        setExcluindo(false);
+        try {
+            // Descobre quem está comentando (instituição ou pessoa)
+            const usuario = await fetch(`${API}/usuario`).then(r => r.json());
+            let autor = usuario.nome || 'Visitante';
+
+            if (usuario.instituicaoId){
+                const minha = await fetch(`${API}/instituicoes/${usuario.instituicaoId}`)
+                    .then(r => r.json());
+                autor = minha.nome || autor;
+            }
+
+            const resposta = await fetch(`${API}/comentarios`, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({
+                    postId: post.id,
+                    autor,
+                    texto,
+                    criadoEm: Date.now()
+                })
+            });
+
+            if (!resposta.ok) throw new Error('falhou');
+
+            const salvo = await resposta.json();
+            setComentarios([...comentarios, salvo]);
+            setNovoComentario('');
+        } catch {
+            setErro('Não foi possível comentar. O json-server está rodando?');
+        } finally {
+            setEnviando(false);
+        }
     }
-}
+
+    // Copia o link que abre o perfil da instituição já na postagem
+    async function compartilhar(){
+        const link = `${window.location.origin}/instituicao/${instituicao.id}#post-${post.id}`;
+
+        try {
+            await navigator.clipboard.writeText(link);
+            setLinkCopiado(true);
+            setTimeout(() => setLinkCopiado(false), 2000);
+        } catch {
+            window.prompt('Copie o link da publicação:', link);
+        }
+    }
+
+    async function excluir(){
+        if (!window.confirm('Excluir esta publicação? Essa ação não pode ser desfeita.')) return;
+
+        setExcluindo(true);
+
+        try {
+            // _dependent apaga também os comentários desta postagem
+            const resposta = await fetch(
+                `${API}/posts/${post.id}?_dependent=comentarios`,
+                { method: 'DELETE' }
+            );
+
+            if (!resposta.ok) throw new Error('falhou');
+
+            onExcluido();
+        } catch {
+            alert('Não foi possível excluir. O json-server está rodando?');
+            setExcluindo(false);
+        }
+    }
 
     return (
-        <article className={styles.post}>
+        <article id={`post-${post.id}`} className={styles.post}>
             <header className={styles.topo}>
-                {instituicao.imagem
-                    ? <img src={instituicao.imagem} alt="" className={styles.avatar} />
-                    : <div className={styles.avatar} />}
+                <Link to={`/instituicao/${instituicao.id}`} className={styles.link}>
+                    {instituicao.imagem
+                        ? <img src={instituicao.imagem} alt="" className={styles.avatar} />
+                        : <div className={styles.avatar} />}
+                </Link>
                 <div>
-                    <strong className={styles.nome}>{instituicao.nome}</strong>
+                    <Link to={`/instituicao/${instituicao.id}`} className={styles.link}>
+                        <strong className={styles.nome}>{instituicao.nome}</strong>
+                    </Link>
                     <p className={styles.descricao}>{instituicao.descricao}</p>
                     <p className={styles.tempo}>{tempoDecorrido(post)}</p>
                 </div>
+
                 {podeExcluir && (
                     <button
                         type="button"
@@ -64,8 +143,8 @@ function Postagem({ post, podeExcluir = false, onExcluido = () => {} }){
                         aria-label="Excluir publicação"
                     >
                         <svg width="20" height="20" viewBox="0 0 24 24" fill="none"
-                            stroke="currentColor" strokeWidth="2"
-                            strokeLinecap="round" strokeLinejoin="round">
+                             stroke="currentColor" strokeWidth="2"
+                             strokeLinecap="round" strokeLinejoin="round">
                             <path d="M3 6h18" />
                             <path d="M8 6V4h8v2" />
                             <path d="M6 6l1 14h10l1-14" />
@@ -75,7 +154,7 @@ function Postagem({ post, podeExcluir = false, onExcluido = () => {} }){
                 )}
             </header>
 
-            <p className={styles.texto}>{post.texto && <p className={styles.texto}>{post.texto}</p>}</p>
+            {post.texto && <p className={styles.texto}>{post.texto}</p>}
 
             {post.imagem && (
                 <img
@@ -100,9 +179,56 @@ function Postagem({ post, podeExcluir = false, onExcluido = () => {} }){
                     </svg>
                     {curtido ? 'Curtido' : 'Gostar'}
                 </button>
-                <button type="button" className={styles.botao}>Comentar</button>
-                <button type="button" className={styles.botao}>Compartilhar</button>
+
+                <button
+                    type="button"
+                    className={`${styles.botao} ${comentariosAbertos ? styles.curtido : ''}`}
+                    onClick={() => setComentariosAbertos(!comentariosAbertos)}
+                    aria-expanded={comentariosAbertos}
+                >
+                    Comentar{comentarios.length > 0 ? ` (${comentarios.length})` : ''}
+                </button>
+
+                <button type="button" className={styles.botao} onClick={compartilhar}>
+                    {linkCopiado ? 'Link copiado!' : 'Compartilhar'}
+                </button>
             </footer>
+
+            {comentariosAbertos && (
+                <section className={styles.comentarios}>
+                    {comentarios.length === 0 && (
+                        <p className={styles.semComentarios}>Seja o primeiro a comentar.</p>
+                    )}
+
+                    {comentarios.map(c => (
+                        <div key={c.id} className={styles.comentario}>
+                            <div className={styles.inicial}>
+                                {(c.autor || '?').charAt(0).toUpperCase()}
+                            </div>
+                            <div>
+                                <strong>{c.autor}</strong>
+                                <span className={styles.quando}>{tempoDecorrido(c)}</span>
+                                <p>{c.texto}</p>
+                            </div>
+                        </div>
+                    ))}
+
+                    <form className={styles.novoComentario} onSubmit={comentar}>
+                        <input
+                            type="text"
+                            placeholder="Escreva um comentário..."
+                            maxLength={300}
+                            value={novoComentario}
+                            onChange={(e) => setNovoComentario(e.target.value)}
+                        />
+                        <button type="submit" disabled={enviando || !novoComentario.trim()}>
+                            Enviar
+                        </button>
+                    </form>
+
+                    {erro && <p className={styles.erroComentario}>{erro}</p>}
+                </section>
+            )}
         </article>
     );
 }

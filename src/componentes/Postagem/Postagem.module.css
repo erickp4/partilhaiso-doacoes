@@ -93,3 +93,100 @@
     opacity: 0.4;
     cursor: default;
 }
+
+.link {
+    display: flex;
+    color: inherit;
+    text-decoration: none;
+}
+
+.link:hover .nome {
+    text-decoration: underline;
+}
+
+/* ---------- Comentários ---------- */
+.comentarios {
+    padding: 0.8em 1em 1em;
+    border-top: 1px solid #E0E0E0;
+    background-color: #FAFAFA;
+}
+
+.semComentarios {
+    margin: 0 0 0.8em;
+    color: #777777;
+    font-size: 0.8rem;
+}
+
+.comentario {
+    display: flex;
+    gap: 0.6em;
+    margin-bottom: 0.8em;
+    font-size: 0.8rem;
+}
+
+.comentario p {
+    margin: 0.1em 0 0;
+    overflow-wrap: anywhere;
+}
+
+.inicial {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 28px;
+    height: 28px;
+    flex-shrink: 0;
+    background-color: var(--verdeChat);
+    border-radius: 50%;
+    color: var(--verdeEscuro);
+    font-size: 0.8rem;
+    font-weight: 700;
+}
+
+.quando {
+    margin-left: 0.5em;
+    color: #888888;
+    font-size: 0.7rem;
+}
+
+.novoComentario {
+    display: flex;
+    gap: 0.5em;
+}
+
+.novoComentario input {
+    flex: 1;
+    min-width: 0;
+    padding: 0.4em 0.7em;
+    border: 1px solid #C4C4C4;
+    border-radius: 999px;
+    font-family: var(--fonte);
+    font-size: 0.8rem;
+}
+
+.novoComentario button {
+    padding: 0 1em;
+    background-color: var(--verdeClaro);
+    color: var(--branco);
+    border: none;
+    border-radius: 999px;
+    font-family: var(--fonte);
+    font-size: 0.8rem;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.novoComentario button:hover {
+    background-color: var(--verdeEscuro);
+}
+
+.novoComentario button:disabled {
+    background-color: var(--cinza);
+    cursor: default;
+}
+
+.erroComentario {
+    margin: 0.5em 0 0;
+    color: var(--vermelho);
+    font-size: 0.8rem;
+}

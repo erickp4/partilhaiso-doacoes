@@ -1,8 +1,9 @@
 import { useEffect, useState } from 'react';
-import { Link, useParams } from 'react-router-dom';
 import BarraLateral from '../../componentes/BarraLateral';
 import Postagem from '../../componentes/Postagem';
+import Doacao from '../../componentes/Doacao';
 import styles from './Perfil.module.css';
+import { Link, useParams, useLocation } from 'react-router-dom';
 
 function moeda(valor){
     return valor.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
@@ -19,12 +20,14 @@ function Perfil(){
     // useParams pega o :id que está na URL
     const { id } = useParams();
 
+    const { hash } = useLocation();
     const [instituicao, setInstituicao] = useState(null);
     const [posts, setPosts] = useState([]);
     const [usuario, setUsuario] = useState({});
     const [seguindo, setSeguindo] = useState(false);
     const [erro, setErro] = useState(false);
     const [versao, setVersao] = useState(0);
+    const [doando, setDoando] = useState(null); // null = fechado; { item } = aberto
 
     useEffect(() => {
         setInstituicao(null);
@@ -49,6 +52,12 @@ function Perfil(){
             })
             .catch(() => setErro(true));
     }, [id, versao]);
+    
+    // Se o link veio de "Compartilhar" (#post-3), rola até aquela postagem
+    useEffect(() => {
+            if (!hash || posts.length === 0) return;
+            document.getElementById(hash.slice(1))?.scrollIntoView({ block: 'center' });
+        }, [hash, posts]);
 
     // É o dono quando a instituição da pessoa logada é esta
     const ehDono = instituicao && usuario.instituicaoId === instituicao.id;
@@ -99,13 +108,9 @@ function Perfil(){
                             </div>
 
                             <div className={styles.dados}>
-                                {/* Quem é dono não segue a própria instituição */}
-                                {!ehDono && (
-                                    <button
-                                        className={styles.seguir}
-                                        onClick={() => setSeguindo(!seguindo)}
-                                    >
-                                        {seguindo ? 'Seguindo' : 'Seguir'}
+                                {!ehDono && instituicao.pix && (
+                                    <button className={styles.seguir} onClick={() => setDoando({ item: null })}>
+                                        Doar
                                     </button>
                                 )}
                                 {instituicao.endereco && <p>{instituicao.endereco}</p>}
@@ -162,14 +167,16 @@ function Perfil(){
                                     <h2 className={styles.secao}>Itens que você pode doar:</h2>
                                     <div className={styles.itens}>
                                         {itens.map(item => (
-                                            <article
+                                            <button
                                                 key={item.nome}
+                                                type="button"
                                                 className={`${styles.item} ${item.urgente ? styles.urgente : ''}`}
+                                                onClick={() => { if (!ehDono) setDoando({ item }); }}
                                             >
-                                                <h3>{item.nome}</h3>
+                                                <strong>{item.nome}</strong>
                                                 <span className={styles.emoji}>{item.icone}</span>
-                                                <p>{textoEstoque(item)}</p>
-                                            </article>
+                                                <span>{textoEstoque(item)}</span>
+                                            </button>
                                         ))}
                                     </div>
                                 </>
@@ -196,6 +203,13 @@ function Perfil(){
                     </>
                 )}
             </main>
+            {doando && instituicao && (
+                <Doacao
+                    instituicao={instituicao}
+                    item={doando.item}
+                    onFechar={() => setDoando(null)}
+                />
+            )}
         </div>
     );
 }

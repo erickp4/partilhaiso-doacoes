@@ -22,7 +22,7 @@
           "dinheiro": true,
           "atual": 4.5,
           "meta": 35,
-          "urgente": false,
+          "urgente": true,
           "ativo": true
         },
         {
@@ -30,42 +30,41 @@
           "icone": "🧺",
           "atual": 0,
           "meta": 0,
-          "ativo": true
-        },
-        {
-          "nome": "Roupas",
-          "icone": "👕",
-          "atual": 20,
-          "meta": 50,
-          "ativo": true,
-          "urgente": false
+          "ativo": false
         },
         {
           "nome": "Cadeira de rodas",
           "icone": "♿",
           "atual": 0,
           "meta": 0,
-          "ativo": true
+          "ativo": false
         },
         {
           "nome": "Itens de higiene",
           "icone": "🧼",
           "atual": 0,
           "meta": 0,
-          "ativo": true
+          "ativo": false
         },
         {
           "nome": "Ração",
           "icone": "🦴",
           "atual": 0,
           "meta": 20,
-          "ativo": true
+          "ativo": false
         },
         {
           "nome": "Cobertores",
           "icone": "🛏️",
           "atual": 0,
           "meta": 0,
+          "ativo": false
+        },
+        {
+          "nome": "Roupas",
+          "icone": "📦",
+          "atual": 0,
+          "meta": 1,
           "ativo": true
         }
       ],
@@ -79,7 +78,7 @@
       "nome": "Lar de idosos",
       "descricao": "Instituição cuidadora de idosos",
       "recursos": "Cesta básica, cobertas e fraldas",
-      "imagem": "/imagens/idosos.png",
+      "imagem": "/imagens/idosos.jpg",
       "sobre": "Um lar acolhedor para idosos de São Sebastião do Paraíso."
     },
     {
@@ -87,14 +86,14 @@
       "nome": "ONG dos patos",
       "descricao": "Primeira ONG que cuida de patos sem lagos",
       "recursos": "Ração",
-      "imagem": "/imagens/patos.png"
+      "imagem": "/imagens/patos.jpg"
     },
     {
       "id": 4,
       "nome": "Projeto Criança",
       "descricao": "Projeto de ensino integral para crianças de até 10 anos",
       "recursos": "Roupas infantil e cesta básica",
-      "imagem": "/imagens/crianca.png"
+      "imagem": "/imagens/balao.jpg"
     }
   ],
   "posts": [
@@ -120,5 +119,72 @@
       2
     ],
     "instituicaoId": 1
-  }
+  },
+  "conversas": [
+    {
+      "id": 1,
+      "nome": "Fulano da Silva",
+      "imagem": ""
+    },
+    {
+      "id": 2,
+      "nome": "Zequinha",
+      "imagem": ""
+    },
+    {
+      "id": 3,
+      "nome": "Regina",
+      "imagem": ""
+    },
+    {
+      "id": 4,
+      "nome": "Osvaldo Rocha",
+      "imagem": ""
+    },
+    {
+      "id": 5,
+      "nome": "Poncio",
+      "imagem": ""
+    }
+  ],
+  "mensagens": [
+    {
+      "id": 1,
+      "conversaId": 1,
+      "de": "outro",
+      "texto": "Boa noite, tenho 2 kg de ração gatos castrados, vocês aceitam desse tipo?",
+      "enviadoEm": "2026-09-28T22:03:00"
+    },
+    {
+      "id": 2,
+      "conversaId": 1,
+      "de": "eu",
+      "texto": "Oi, aceitamos todos os tipos de ração! Você gostaria de entregar aqui ou prefere que nós busquemos??",
+      "enviadoEm": "2026-09-29T08:23:00"
+    },
+    {
+      "id": 3,
+      "conversaId": 1,
+      "de": "outro",
+      "texto": "Vou passar ai para entregar",
+      "enviadoEm": "2026-09-29T08:25:00"
+    },
+    {
+      "id": 4,
+      "conversaId": 1,
+      "de": "eu",
+      "texto": "Muito obrigado pela ajuda! <3",
+      "enviadoEm": "2026-09-29T08:26:00"
+    }
+  ],
+  "doacoes": [],
+  "comentarios": [
+    {
+      "postId": 2,
+      "autor": "Cuida Panda",
+      "texto": "Foi muito legal mesmo.",
+      "criadoEm": 1792361828177,
+      "id": 1
+    }
+  ]
 }
