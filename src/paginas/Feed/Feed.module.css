@@ -199,3 +199,9 @@
 .locais a:hover {
     color: var(--verdeEscuro);
 }
+
+@media (max-width: 600px) {
+    .principal {
+        padding: 1em;
+    }
+}

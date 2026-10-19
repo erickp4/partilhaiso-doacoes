@@ -1,9 +1,10 @@
 import { useEffect, useState } from 'react';
+import { Link, useParams, useLocation } from 'react-router-dom';
 import BarraLateral from '../../componentes/BarraLateral';
 import Postagem from '../../componentes/Postagem';
 import Doacao from '../../componentes/Doacao';
+import { alternarSeguir } from '../../utilitarios/seguir';
 import styles from './Perfil.module.css';
-import { Link, useParams, useLocation } from 'react-router-dom';
 
 function moeda(valor){
     return valor.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
@@ -17,16 +18,16 @@ function textoEstoque(item){
 }
 
 function Perfil(){
-    // useParams pega o :id que está na URL
     const { id } = useParams();
-
     const { hash } = useLocation();
+
     const [instituicao, setInstituicao] = useState(null);
     const [posts, setPosts] = useState([]);
     const [usuario, setUsuario] = useState({});
     const [seguindo, setSeguindo] = useState(false);
     const [erro, setErro] = useState(false);
     const [versao, setVersao] = useState(0);
+    const [versaoSeguir, setVersaoSeguir] = useState(0);
     const [doando, setDoando] = useState(null); // null = fechado; { item } = aberto
 
     useEffect(() => {
@@ -42,22 +43,25 @@ function Perfil(){
             fetch('http://localhost:3001/usuario').then(r => r.json())
         ])
             .then(([dadosInst, dadosPosts, dadosUsuario]) => {
-                // Se a lista de posts vier errada, usa uma lista vazia em vez de quebrar
                 const listaPosts = Array.isArray(dadosPosts) ? dadosPosts : [];
 
                 setInstituicao(dadosInst);
-                setPosts(listaPosts.map(p => ({ ...p, instituicao: dadosInst })).sort((a, b) => b.id - a.id));
+                setPosts(
+                    listaPosts
+                        .map(p => ({ ...p, instituicao: dadosInst }))
+                        .sort((a, b) => b.id - a.id)
+                );
                 setUsuario(dadosUsuario || {});
                 setSeguindo((dadosUsuario?.seguindo || []).includes(dadosInst.id));
             })
             .catch(() => setErro(true));
     }, [id, versao]);
-    
+
     // Se o link veio de "Compartilhar" (#post-3), rola até aquela postagem
     useEffect(() => {
-            if (!hash || posts.length === 0) return;
-            document.getElementById(hash.slice(1))?.scrollIntoView({ block: 'center' });
-        }, [hash, posts]);
+        if (!hash || posts.length === 0) return;
+        document.getElementById(hash.slice(1))?.scrollIntoView({ block: 'center' });
+    }, [hash, posts]);
 
     // É o dono quando a instituição da pessoa logada é esta
     const ehDono = instituicao && usuario.instituicaoId === instituicao.id;
@@ -67,13 +71,28 @@ function Perfil(){
         alert('Link do perfil copiado!');
     }
 
+    async function seguir(){
+        try {
+            const lista = await alternarSeguir(instituicao.id);
+            setSeguindo(lista.includes(instituicao.id));
+            setVersaoSeguir(v => v + 1); // faz a barra lateral recarregar a lista
+        } catch {
+            alert('Não foi possível atualizar. O json-server está rodando?');
+        }
+    }
+
+    // Só os itens ligados aparecem, e os prioritários vêm primeiro
     const itens = (instituicao?.itens || [])
         .filter(item => item.ativo !== false)
         .sort((a, b) => Number(Boolean(b.urgente)) - Number(Boolean(a.urgente)));
 
     return (
         <div className={styles.pagina}>
-            <BarraLateral perfilId={Number(id)} onPostou={() => setVersao(v => v + 1)} />
+            <BarraLateral
+                perfilId={Number(id)}
+                versao={versaoSeguir}
+                onPostou={() => setVersao(v => v + 1)}
+            />
 
             <main className={styles.principal}>
                 {erro && (
@@ -108,12 +127,32 @@ function Perfil(){
                             </div>
 
                             <div className={styles.dados}>
-                                {!ehDono && instituicao.pix && (
-                                    <button className={styles.seguir} onClick={() => setDoando({ item: null })}>
-                                        Doar
-                                    </button>
+                                {/* Quem é dono do perfil não segue nem doa para si mesmo */}
+                                {!ehDono && (
+                                    <div className={styles.botoesPerfil}>
+                                        <button
+                                            type="button"
+                                            className={`${styles.seguir} ${seguindo ? styles.jaSegue : ''}`}
+                                            onClick={seguir}
+                                        >
+                                            {seguindo ? 'Seguindo' : 'Seguir'}
+                                        </button>
+                                        <button
+                                            type="button"
+                                            className={styles.seguir}
+                                            onClick={() => setDoando({ item: null })}
+                                        >
+                                            Doar
+                                        </button>
+                                    </div>
                                 )}
-                                {instituicao.endereco && <p>{instituicao.endereco}</p>}
+
+                                {instituicao.endereco && (
+                                    <p>
+                                        {instituicao.endereco}
+                                        {instituicao.numero ? `, N${instituicao.numero}` : ''}
+                                    </p>
+                                )}
                                 {instituicao.email && <p>Email: {instituicao.email}</p>}
                                 {instituicao.pix && (
                                     <>
@@ -203,6 +242,7 @@ function Perfil(){
                     </>
                 )}
             </main>
+
             {doando && instituicao && (
                 <Doacao
                     instituicao={instituicao}

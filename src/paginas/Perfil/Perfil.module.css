@@ -230,3 +230,45 @@
         flex-wrap: wrap;
     }
 }
+
+.botoesPerfil {
+    display: flex;
+    gap: 0.5em;
+    margin-bottom: 0.4em;
+}
+
+.botoesPerfil .seguir {
+    margin-bottom: 0;
+}
+
+/* Já está seguindo: botão mais claro */
+.jaSegue {
+    background-color: var(--verdeChat);
+    color: var(--verdeEscuro);
+}
+
+@media (max-width: 600px) {
+    .cabecalho {
+        padding: 0 1em 1em;
+    }
+
+    .identidade {
+        width: 100%;
+    }
+
+    .dados {
+        flex: 1 1 100%;
+    }
+
+    .conteudo {
+        padding: 1em;
+    }
+
+    .publicacoes {
+        padding: 0.5em 1em 1.5em;
+    }
+
+    .itens {
+        grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+    }
+}

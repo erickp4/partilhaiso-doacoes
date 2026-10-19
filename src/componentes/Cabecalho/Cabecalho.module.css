@@ -29,3 +29,17 @@
 .botaoLogin:hover {
     background-color: var(--verdeEscuro);
 }
+
+@media (max-width: 600px) {
+    .cabecalho {
+        flex-direction: column;
+        gap: 0.6em;
+        padding: 0.8em 4%;
+    }
+
+    .menu {
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 0.4em;
+    }
+}

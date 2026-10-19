@@ -166,3 +166,54 @@
 .google:hover {
     background-color: #F5F5F5;
 }
+
+@media (max-width: 800px) {
+    .pagina {
+        display: flex;
+        flex-direction: column;
+    }
+
+    /* "display: contents" solta os itens da barra lateral,
+       para podermos reordenar cada um deles */
+    .lateral {
+        display: contents;
+    }
+
+    .lateral > * {
+        margin: 0 1.5em;
+    }
+
+    .lateral > a {
+        margin-top: 1.5em;
+        align-self: flex-start;
+    }
+
+    .lateral > nav {
+        margin-bottom: 1.5em;
+    }
+
+    /* O formulário vem logo depois do Log in */
+    .principal {
+        order: 1;
+        border-top: 1px solid var(--cinza);
+    }
+
+    .titulo {
+        font-size: 2.2rem;
+    }
+
+    /* Instituições e Quem somos vão para baixo, lado a lado */
+    .menu {
+        order: 2;
+        flex-direction: row;
+        justify-content: center;
+        gap: 2em;
+        margin: 1em 1.5em 0;
+        padding: 1.2em 0 2em;
+        border-top: 1px solid var(--cinza);
+    }
+
+    .menu a {
+        font-size: 1.15rem;
+    }
+}
